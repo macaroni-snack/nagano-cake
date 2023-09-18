@@ -12,7 +12,10 @@
       <% @customers.each do |customer| %>
         <tr>
           <td><%= customer.id %></td>
-          <td><%= customer.first_name %> <%= customer.last_name %></td>
-            
-
+          <td><%= customer.family_name %> <%= customer.first_name %></td>
+          <td><%= customer.email %></td>
+          <td><%= customer.is_deleted ? 'text-gray' : 'text-green' %><%= customer.is_deleted ? '退会済み' : '有効' %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>

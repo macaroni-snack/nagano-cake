@@ -22,11 +22,17 @@
             </tr>
           </thead>
           <% @items.each do |item| %>
-          <thead>
+          <tbody>
             <tr>
-              <td class=""
+              <td class="align-items-center"><%= item.id %></td>
+              <td class="align-items-center"><%= link_to admin_item_pash(item.id) do %>
+               <%= item.name %>
+              </td>
+              <% end %>
+              <td class="align-items-center"><%= item.price %</td>
             </tr>
-          </thead>
+          </tbody>
+          <% end %>
         </table>
       </div>
     </div>

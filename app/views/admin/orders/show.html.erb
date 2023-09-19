@@ -1,2 +1,58 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<h2>注文詳細</h2>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <h4>購入者: <%= @order.customer.name %></h4>
+      <p>注文日: <%= @order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></p>
+      <p>配送先: <%= @order.shipping_address %></p>
+      <p>支払方法: <%= @order.payment_method %></p>
+      <p>
+        注文ステータス:
+        <%= select_tag 'order_status', options_for_select([['未発送', 'pending'], ['発送済み', 'shipped'], ['キャンセル', 'canceled']], @order.status), class: 'form-control' %>
+        <%= button_to '更新', update_order_status_admin_order_path(@order), method: :patch, class: 'btn btn-primary', data: { confirm: '注文ステータスを更新しますか？' } %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<h3>商品一覧</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込み)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th>製作ステータス</th>
+      <th>更新</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.order_details.each do |detail| %>
+      <tr>
+        <td><%= detail.item.name %></td>
+        <td><%= detail.price_tax_included %>円</td>
+        <td><%= detail.quantity %></td>
+        <td><%= detail.subtotal_tax_included %>円</td>
+        <td>
+          <%= select_tag "order_details[#{detail.id}][production_status]", options_for_select([['製作待ち', 'waiting'], ['製作中', 'in_progress'], ['製作完了', 'completed']], detail.production_status), class: 'form-control' %>
+        </td>
+        <td>
+          <%= button_to '更新', update_production_status_admin_order_path(@order, order_detail_id: detail.id), method: :patch, class: 'btn btn-primary', data: { confirm: '製作ステータスを更新しますか？' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-6">
+      <p>商品合計: <%= @order.total_price %>円</p>
+      <p>送料: 800円</p>
+      <p>合計: <%= @order.total_price + 800 %>円</p>
+    </div>
+  </div>
+</div>
+<%= link_to '一覧に戻る', admin_orders_path, class: 'btn btn-secondary' %>

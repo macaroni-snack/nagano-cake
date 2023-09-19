@@ -1,3 +1,5 @@
+<%= flash[:notice] %>
+
 <div class="container">
   <div class="row">
     <div class="col-sm-8 px-sm-0 offset-sm-1">
@@ -10,7 +12,7 @@
     </div>
     
     <div class="row">
-      <div class="col-sm-10 px-sm-0 mx-auto md-5">
+      <div class="col-sm-12 px-sm-0 mx-auto md-6">
         <table class="table text-container admin-items mb-5">
           <thead>
             <tr>
@@ -29,7 +31,15 @@
                <%= item.name %>
               </td>
               <% end %>
-              <td class="align-items-center"><%= item.price %</td>
+              <td class="align-items-center"><%= item.price %></td>
+              <td class="align-items-center"><%= genre_name %></td>
+              <td class="align-items-center">
+                <% if item.is_active == true %>
+                  <p class="text-success font-weight-bold">販売中</p>
+                <% else %>
+                  <p class="text-danger font-weight-bold">販売停止中</p>
+                <% end %>
+              </td>
             </tr>
           </tbody>
           <% end %>

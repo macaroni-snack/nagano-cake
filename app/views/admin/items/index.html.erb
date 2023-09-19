@@ -26,13 +26,14 @@
           <% @items.each do |item| %>
           <tbody>
             <tr>
-              <td class="align-items-center"><%= item.id %></td>
-              <td class="align-items-center"><%= link_to admin_item_pash(item.id) do %>
-               <%= item.name %>
-              </td>
-              <% end %>
+                <td class="align-items-center"><%= item.id %></td>
+                <td class="align-items-center">
+                  <%= link_to admin_item_path(item) do %>
+                    <%= item.name %>
+                  <% end %>
+                </td>
               <td class="align-items-center"><%= item.price %></td>
-              <td class="align-items-center"><%= genre_name %></td>
+              <td class="align-items-center"><%= item.genre.name %></td>
               <td class="align-items-center">
                 <% if item.is_active == true %>
                   <p class="text-success font-weight-bold">販売中</p>

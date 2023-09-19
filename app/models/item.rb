@@ -5,4 +5,8 @@ class Item < ApplicationRecord
   
   has_one_attached :image
   
+  validates :name, presence: true
+  validates :introduction, presence: true
+  validates :genre, presence: true
+  validates :is_active, presence: true, numericality: { only_integer: true, greater_than: 0}
 end

@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  devise_for :customers
+  devise_for :admin,skip: [:registrations, :passwords], controllers: {
+  sessions: "admin/sessions"
+}
+  devise_for :customers,controllers: {
+  sessions: "public/sessions",
+  registrations: 'public/registrations',
+}
 
   scope module: :public do
     root to: 'homes#top'
@@ -16,9 +21,9 @@ Rails.application.routes.draw do
     get "orders/complete" => "orders#complete"
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
-  
+
   namespace :admin do
-    get "admin" => "homes#top"
+    get "" => "homes#top"
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]

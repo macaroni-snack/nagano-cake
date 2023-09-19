@@ -4,6 +4,7 @@ class Public::CustomersController < ApplicationController
   end
   
   def show
+    @costomer = current_costomer
   end
 
 

@@ -13,24 +13,63 @@
 
   <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/admin">ロゴ</a>
+    <a class="navbar-brand" href="/">ロゴ</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
+        <% if customer_signed_in? %>
         <li class="nav-item">
-          <a class="nav-link" href="/about">About</a>
+          <a class="nav-link" href="/customers/my_page">マイページ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/admin/items">商品一覧</a>
+          <a class="nav-link" href="/items">商品一覧</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/customers/sign_up">新規登録</a>
+          <a class="nav-link" href="/cart_items">カート</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/customers/sign_in">ログイン</a>
+          <a class="nav-link" href="/customers/sign_out" data-method="delete">ログアウト</a>
         </li>
+        
+        <% elsif admin_signed_in? %>
+          <!-- 管理者ログイン時のメニュー -->
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/items">商品一覧</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/customers">会員一覧</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/orders">注文履歴一覧</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/genres">ジャンル一覧</a>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to '管理者ログイン', new_admin_session_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/items">商品一覧</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/customers/sign_up">新規登録</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/customers/sign_in">ログイン</a>
+          </li>
+        <% if admin_signed_in? %>
+          <%= link_to '管理者ログアウト', destroy_admin_session_path, method: :delete, class: 'btn btn-danger' %>
+        <% end %>
+        <% end %>
       </ul>
     </div>
   </nav>

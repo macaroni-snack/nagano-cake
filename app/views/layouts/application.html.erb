@@ -13,12 +13,26 @@
 
   <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/admin">ロゴ</a>
+    <a class="navbar-brand" href="/">ロゴ</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
+        <% if customer_signed_in? %>
+        <li class="nav-item">
+          <a class="nav-link" href="/customers/my_page">マイページ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/items">商品一覧</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/cart_items">カート</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/customers/sign_out" data-method="delete">ログアウト</a>
+        </li>
+        <% else %>
         <li class="nav-item">
           <a class="nav-link" href="/about">About</a>
         </li>
@@ -31,6 +45,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/customers/sign_in">ログイン</a>
         </li>
+        <% end %>
       </ul>
     </div>
   </nav>

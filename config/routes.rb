@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     post "orders/confirm" => "orders#confirm"
     get "orders/complete" => "orders#complete"
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    resources :genres, only: [:show]
   end
 
   namespace :admin do

@@ -3,6 +3,9 @@ class Public::CartItemsController < ApplicationController
     @cart_items = CartItem.where(customer_id: current_customer.id)
   end
   
+  def create
+  end
+  
   def update
   end
   
@@ -10,8 +13,8 @@ class Public::CartItemsController < ApplicationController
   end
   
   def destroy_all
-  end
-  
-  def create
+    CartItem.where(customer_id: current_customer.id).destroy_all
+    flash[:success] = "カートの中を空にしました"
+    redirect_back(fallback_location: root_path)
   end
 end

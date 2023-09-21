@@ -14,8 +14,9 @@
       <h4>商品名</h4><%= @item.name %>
       <h4>商品説明</h4><%= simple_format(@item.introduction)%>
       <h4>ジャンル</h4><%= @item.genre.name %>
-      <h4>税込価格<br>(税抜価格)</h4><%= @item.price %>
+      <h4>税込価格<br>(税抜価格)</h4><%= @item.price %>(<%= @item.with_tax_price %>)円
       <% if @item.is_active == true %>
+      <h4>販売ステータス</h4>
         <p class="text-success font-weight-bold">販売中</p>
       <% else %>
         <p class="text-danger font-weight-bold">販売停止中</p>

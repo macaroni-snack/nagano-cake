@@ -1,6 +1,7 @@
 class Public::CartItemsController < ApplicationController
   def index
-    @cart_items = CartItem.where(customer_id: current_customer.id)
+    @合計金額 = 0
+    @cart_items = current_customer.cart_items
   end
   
   def create
@@ -24,9 +25,21 @@ class Public::CartItemsController < ApplicationController
   end
   
   def update
+    @cart_item = CartItem.find(params[:id])
+    if @cart_item.update(cart_item_params)
+      flash[:success] = "個数を変更しました"
+      redirect_back(fallback_location: root_path)
+    else
+      flash[:danger] = "正しい個数を入力してください"
+      redirect_back(fallback_location: root_path)
+    end
   end
   
   def destroy
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.destroy
+    flash[:success] = "選択いただいたカートを空にしました"
+    redirect_back(fallback_location: root_path)
   end
   
   def destroy_all

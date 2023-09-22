@@ -1,4 +1,6 @@
 <h1>ジャンル一覧・追加</h1>
+
+<%= flash[:notice] %>
 <h4>ジャンル名</h4>
 <%= form_with model: @genre, url: admin_genres_path,method: :post do |f| %>
   <%= f.text_field :name %>

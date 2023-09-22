@@ -1,5 +1,5 @@
 <h1>ジャンル編集</h1>
-
+<%= flash[:notice] %>
 <%= form_with model: @genre, url: admin_genre_path, method: :patch do |f| %>
   <h4>ジャンル名</h4>
   <%= f.text_field :name %>

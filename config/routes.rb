@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :genres, only: [:show]
   end
+
   namespace :admin do
     get "" => "homes#top"
     resources :items, only: [:index, :new, :create, :show, :edit, :update]

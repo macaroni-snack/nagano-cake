@@ -1,7 +1,9 @@
+require 'bigdecimal'
+
 class Public::CartItemsController < ApplicationController
   def index
-    @合計金額 = 0
     @cart_items = current_customer.cart_items
+    @total_amount = calculate_total_amount(@cart_items) # 合計金額の計算メソッドを呼び出す
   end
   
   def create
@@ -51,5 +53,17 @@ class Public::CartItemsController < ApplicationController
   private
   def cart_item_params
     params.require(:cart_item).permit(:item_id, :amount)
+  end
+  
+  def calculate_total_amount(cart_items)
+    total_amount = BigDecimal('0') # BigDecimalを初期化
+    
+    cart_items.each do |cart_item|
+      item_price = BigDecimal(cart_item.item.price.to_s) # 商品価格をBigDecimalに変換
+      total_amount += item_price * BigDecimal('1.1') * BigDecimal(cart_item.amount.to_s)
+    end
+    
+    total_amount = total_amount.to_i # 小数点以下を切り捨てて整数に変換
+    total_amount.to_s # 整数として合計金額を文字列として返す
   end
 end

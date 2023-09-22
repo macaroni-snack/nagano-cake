@@ -5,7 +5,7 @@
     </div>
     <% unless @cart_items.empty? %>
     <div class="col-sm-2 px-sm-0">
-      <p><%= link_to 'カートを空にする', cart_items_destroy_all_path, class: "btn btn-denger float-right", id: "all-delete", method: :delete, date: { confirm: '削除しますか?' } %></p>
+      <p><%= link_to 'カートを空にする', cart_items_destroy_all_path, method: :delete, data: { confirm: '削除しますか？' }, class: "btn btn-danger", id: "all-delete" %></p>
     </div>
     <% end %>
   </div>

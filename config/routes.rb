@@ -11,15 +11,16 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'about' => "homes#about"
     resources :items, only: [:index, :show]
-    resources :customers, only: [:show, :edit, :update]
-    get 'customers/confirm_withdrawal' => "customers#confirm_withdrawal"
-    patch 'customers/withdrawal' => "customers#withdrawal"
-    delete 'cart_items/destroy_all' => "cart_items#destroy_all"
-    resources :cart_items, only: [:index, :update, :create, :destroy]
     
-    resources :orders, only: [:new, :create, :index, :show]
+    patch 'customers/withdrawal' => "customers#withdrawal"
+    get 'customers/confirm_withdrawal' => "customers#confirm_withdrawal"
+    resources :customers, only: [:show, :edit, :update]
+    
+    resources :cart_items, only: [:index, :update, :create, :destroy]
+    delete 'cart_items/destroy_all' => "cart_items#destroy_all"
     post "orders/confirm" => "orders#confirm"
     get "orders/complete" => "orders#complete"
+    resources :orders, only: [:new, :create, :index, :show]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :genres, only: [:show]
   end

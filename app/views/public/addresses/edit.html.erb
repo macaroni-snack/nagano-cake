@@ -1,24 +1,52 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
 <div class="container">
-  <h2>配送先編集</h2>
-  <%= form_with model: @address, url: address_path(@address), method: :patch do |f| %>
-    <div class="address">
-        <%= f.label :郵便番号 %>
-        <%= f.text_field :post_code, autofocus: true, autocomplete: "post_code" %>
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>配送先編集</h2>
     </div>
-
-    <div class="address">
-      <%= f.label :住所 %>
-      <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
-    </div>
-
-    <div class="address">
-      <%= f.label :宛名 %>
-      <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-    </div>
-
-    <div class="field">
-      <%= f.submit "変更内容を保存", class:"btn btn-primary" %>
-    </div>
+  </div>  
+  
+  <!--編集エラーメッセージ-->
+  <% if @address.errors.any? %>
+  <%= @address.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @address.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
   <% end %>
-
+  
+  <div class="row">
+    <div class="col-sm-10 px-sm-0 mx-auto">
+    　<!--編集画面-->
+      <%= form_with model: @address, url: address_path(@address), method: :patch do |f| %>
+      <table>
+        <tr>
+          <div class="address_form">
+            <th><%= f.label :郵便番号 %></th>
+            <td><%= f.text_field :post_code, autofocus: true, autocomplete: "post_code" %></td>
+          </div>
+        </tr>
+        
+        <tr>
+          <div class="address_form">
+            <th><%= f.label :住所 %></th>
+            <td><%= f.text_field :address, autofocus: true, autocomplete: "address" %></td>
+          </div>
+        </tr>
+    
+        <tr>
+          <div class="address_form">
+            <th><%= f.label :宛名 %></th>
+            <td><%= f.text_field :name, autofocus: true, autocomplete: "name" %></td>
+            <td><%= f.submit "変更内容を保存", class:"btn btn-success my-1 mx-4 px-4" %></td>
+          </div>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
 </div>

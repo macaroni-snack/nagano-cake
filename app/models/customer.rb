@@ -11,4 +11,8 @@ class Customer < ApplicationRecord
 #   with_options presence: true do
 #   validates :email
 # end
+
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
 end

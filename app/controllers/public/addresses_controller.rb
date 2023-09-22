@@ -26,10 +26,10 @@ class Public::AddressesController < ApplicationController
   	if @address.update(address_params)
   	  flash[:notice] = "配送先の変更内容を保存しました。"
   	  redirect_to addresses_path
-  	 else
+  	else
   	   flash.now[:notice] = "新しい配送先の変更に失敗しました。"
   	   render :edit
-  	 end
+  	end
   end
 
   def destroy

@@ -1,2 +1,83 @@
-<h1>Public::Addresses#index</h1>
-<p>Find me in app/views/public/addresses/index.html.erb</p>
+<div>
+  <%= flash[:notice] %>
+</div>
+
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col-sm-10 px-sm-0 offset-sm-1">
+      <h2>配送先登録/一覧</h2>
+    </div>
+  </div>
+  
+  <!--編集エラーメッセージ-->
+  <% if @address.errors.any? %>
+  <%= @address.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @address.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  
+  <div class="row">
+    <div class="col-sm-10 px-sm-0 mx-auto">
+      <%= form_with model: @address, url: addresses_path, method: :post do |f| %>
+      <!--autofocus: true➝データ記憶して、入力状態にする-->
+      <!--autocomplete➝入力済みの文字列を元に候補のメニューを表示して入力を補完-->
+      <table>
+        <tr>
+          <div class="address_form">
+            <!--()使ったらシンタックスエラーになる-->
+            <th><%= f.label :郵便番号 %></th>
+            <td><%= f.text_field :post_code, autofocus: true, autocomplete: "post_code" %></td>
+          </div>
+        </tr>
+        
+        <tr>
+          <div class="address_form">
+            <th><%= f.label :住所 %></th>
+            <td><%= f.text_field :address, autofocus: true, autocomplete: "address", :size => "40*40" %></td>
+          </div>
+        </tr>
+        
+        <tr>
+          <div class="address_form">
+            <th><%= f.label :宛名 %></th>
+            <td><%= f.text_field :name, autofocus: true, autocomplete: "name" %></td>
+            <td><%= f.submit "新規登録", class:"btn btn-success my-1 mx-4 px-4" %></td>
+          </div>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+    
+  <div class="row">
+    <div class="col-sm-10 px-sm-0 mx-auto">
+      <table  class="table table-hover table-bordered">
+        <thead class="table-active">
+          <tr>
+            <th>郵便番号</th>
+            <th>住所</th>
+            <th>宛名</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @addresses.each do |address| %>
+          <tr>
+            <td><%= address.post_code %></td>
+            <td><%= address.address %></td>
+            <td><%= address.name %></td>
+            <td>
+              <%= link_to "編集する", edit_address_path(address), class: "btn btn-success my-1 mx-4 px-4" %>
+              <%= link_to "削除する", address_path(address), method: :delete , class: "btn btn-danger my-1 mx-4 px-4" %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

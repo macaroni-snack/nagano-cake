@@ -52,7 +52,9 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    @genres = Genre.all
+   @orders = params[:genre_id].present? ? Genre.find(params[:genre_id]).orders : Order.all
+
   end
 
   def show

@@ -14,3 +14,12 @@
     </tbody>
   </table>
 </div>
+<form action="/orders" method="get">
+  <select name="genre_id">
+    <option value="">すべてのジャンル</option>
+    <% @genres.each do |genre| %>
+      <option value="<%= genre.id %>"><%= genre.name %></option>
+    <% end %>
+  </select>
+  <input type="submit" value="検索">
+</form>

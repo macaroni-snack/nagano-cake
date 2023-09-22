@@ -1,12 +1,18 @@
 <div class="container">
-  <div class="row my-3">
-    <div class="col-sm-2 px-sm-0 offset-sm-1">
+  <div class="row">
+    <div class="col-sm-12 px-sm-0 offset-sm-1">
       <h2>ショッピングカート</h2>
     </div>
     <% unless @cart_items.empty? %>
     <div class="col-sm-2 px-sm-0">
-      <%= link_to "カートを空にする", cart_items_destroy_all_path, class: "btn btn-denger float-right", id: "all-delete", method: :delete, date: { confirm: '削除しますか?' } %>
+      <p><%= link_to 'カートを空にする', cart_items_destroy_all_path, class: "btn btn-denger float-right", id: "all-delete", method: :delete, date: { confirm: '削除しますか?' } %></p>
     </div>
     <% end %>
   </div>
+  
+  <% if @cart_items.empry? %>
+    <div style="height: 200px;"></div>
+    <div class="text-center">
+      
+    </div>
 </div>

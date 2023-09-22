@@ -10,19 +10,20 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'about' => "homes#about"
+    post "orders/confirm" => "orders#confirm"
+    get "orders/complete" => "orders#complete"
     resources :items, only: [:index, :show]
-    resources :customers, only: [:show, :edit, :update]
-    get 'customers/confirm_withdrawal' => "customers#confirm_withdrawal"
+    
     patch 'customers/withdrawal' => "customers#withdrawal"
+    get 'customers/confirm_withdrawal' => "customers#confirm_withdrawal"
+    resources :customers, only: [:show, :edit, :update]
+    
     resources :cart_items, only: [:index, :update, :create, :destroy]
     delete 'cart_items/destroy_all' => "cart_items#destroy_all"
     resources :orders, only: [:new, :create, :index, :show]
-    post "orders/confirm" => "orders#confirm"
-    get "orders/complete" => "orders#complete"
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :genres, only: [:show]
   end
-
   namespace :admin do
     get "" => "homes#top"
     resources :items, only: [:index, :new, :create, :show, :edit, :update]

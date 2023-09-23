@@ -8,7 +8,7 @@ class Public::GenresController < ApplicationController
   # ビュー（ジャンル検索）から送られてきたgenre_idを持つ Itemを全て取得
     @items = Item.where(genre_id: @genre_id)
     
-     @genres = Genre.all
-     @genre = Genre.find(params[:id])
+    @genres = Genre.all
+    @genre = Genre.find(params[:id])
   end
 end

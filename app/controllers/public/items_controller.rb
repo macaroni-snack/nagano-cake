@@ -2,12 +2,16 @@ class Public::ItemsController < ApplicationController
   def index
     @genres = Genre.all
     @genre_id = params[:genre_id]
+
     if @genre_id != nil
-     @items = Genre.find(@genre_id).items
+      @items = Genre.find(@genre_id).items
+      @index = Genre.find(params[:genre_id]).name
+
     else
-     @items = Item.all
+      @items = Item.all
+      @index = '商品'
     end
-    # @orders = params[:genre_id].present? ? Genre.find(params[:genre_id]).orders : Order.all
+
   end
 
   def show
@@ -18,7 +22,7 @@ class Public::ItemsController < ApplicationController
 
 private
   def item_params
-    params.require(:items).permit(:genre_id,:name,:introduction,:image_id,:price)
+    params.require(:items).permit(:image,:genre_id,:name,:introduction,:image_id,:price)
   end
-  
+
 end

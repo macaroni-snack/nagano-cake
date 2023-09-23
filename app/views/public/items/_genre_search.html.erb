@@ -8,12 +8,10 @@
     <tbody>
       <% genres.each do |genre| %>
         <tr>
+          <!--(パラメータ名: 取得したい値=URLの?以降に表示される)-->
           <td><%= link_to genre.name, items_path(genre_id: genre.id) %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-
-<!--<form action="/orders" method="get">-->
-<!--</form>-->

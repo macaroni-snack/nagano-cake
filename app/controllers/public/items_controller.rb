@@ -1,11 +1,9 @@
 class Public::ItemsController < ApplicationController
   def index
-    @items = Item.all
     @genres = Genre.all
     @genre_id = params[:genre_id]
-  # @orders = params[:genre_id].present? ? Genre.find(params[:genre_id]).orders : Order.all
     if @genre_id != nil
-     p 'test1'
+     @items = Genre.find(@genre_id).items
     else
      @items = Item.all
     end

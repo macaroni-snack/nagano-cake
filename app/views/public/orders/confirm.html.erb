@@ -3,7 +3,7 @@
   <h4>注文情報確認</h4>
 
   <div class="row">
-    <div class="col-sm-8 px-sm-0 mx-auto">
+    <div class="col-md-8">
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -26,13 +26,15 @@
         </tbody>
       </table>
     </div>
-    <div class="col-sm-4 px-sm-0 mx-auto">
+    <div class="col-md-4">
       <table class="table table-bordered">
         <tr><th class="table-active" style="width:50%">送料</th><td>800</td></tr>
         <tr><th class="table-active" style="width:50%">商品合計</th><td><%= @total_amount.to_s %></td></tr>
         <tr><th class="table-active" style="width:50%">請求合計</th><td><%= @total_amount + 800 %></td></tr>
+      </table>
     </div>
   </div>
+
 </div>
 
 <!-- 新しいお届け先の登録フォーム -->

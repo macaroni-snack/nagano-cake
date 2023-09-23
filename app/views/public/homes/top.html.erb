@@ -13,23 +13,31 @@
   </div>
 </div>
     
-     <div class="container">
-       <h2>新着商品</h2>
-       <div class="row">
-         <% @items.first(4).each do |item| %>
-          <div class="col-12 col-md-7 col-lg-3">
-           <%= link_to item_path(item) do %>
-             <p><%= image_tag item.image, size: "300x200" %></p>
-           <% end %>
-           <div class="card-body">
-            <p class="card-title"><h4>商品名</h4><%= item.name %></p>
-            <h6 class="card-text">¥<%= item.with_tax_price %></h6>
-           </div>
-          </div>
-         <% end %>
-         
-       </div>
-     </div>
+<style>
+  .product-image {
+    margin: 10px;
+  }
+</style>
+
+<div class="container">
+  <h2>新着商品</h2>
+  <div class="row">
+    <% @items.first(4).each do |item| %>
+      <div class="col-12 col-md-7 col-lg-3">
+        <%= link_to item_path(item) do %>
+          <!-- 商品画像に隙間を追加 -->
+          <p class="product-image">
+            <%= image_tag item.image, size: "300x200" %>
+          </p>
+        <% end %>
+        <div class="card-body">
+          <p class="card-title"><h4>商品名</h4><%= item.name %></p>
+          <h6 class="card-text">¥<%= item.with_tax_price %></h6>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
   <div class="index-link">
     <%= link_to "全ての商品を見る>", items_path %>
   </div>

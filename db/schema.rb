@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 2023_09_18_081918) do
 
   create_table "order_details", force: :cascade do |t|
     t.integer "item_id", null: false
-    t.integer "oreder_id", null: false
+    t.integer "order_id", null: false
     t.integer "quantity", null: false
     t.integer "price", null: false
     t.integer "making_status", default: 0, null: false
@@ -122,7 +122,6 @@ ActiveRecord::Schema.define(version: 2023_09_18_081918) do
     t.string "name", null: false
     t.string "post_code", null: false
     t.string "address", null: false
-    t.string "address_option", null: false
     t.integer "shipping_fee", null: false
     t.integer "payment_method", default: 0, null: false
     t.integer "total_payment", null: false

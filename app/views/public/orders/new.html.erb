@@ -19,7 +19,7 @@
 
       <!-- ご自身の住所のラジオボタン -->
       <div class="form-check">
-        <%= f.radio_button :address_option, :own_address, class: "form-check-input" %>
+        <%= f.radio_button :address_option, :own_address, class: "form-check-input", checked: true %>
         <%= f.label :order_address, "ご自身の住所", class: "form-check-label" %>
         <br>
         〒<%= current_customer.post_code %>

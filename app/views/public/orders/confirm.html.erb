@@ -1,7 +1,7 @@
 
 <div class="container mt-5">
   <h4>注文情報確認</h4>
-  
+
   <div class="row">
     <div class="col-sm-8 px-sm-0 mx-auto">
       <table class="table table-bordered">
@@ -34,9 +34,8 @@
     </div>
   </div>
 </div>
-  
+
 <!-- 新しいお届け先の登録フォーム -->
-<div class="container mt-5">
   <div class="mt-4">
     <div class="row">
       <div class="col-md-2">
@@ -49,7 +48,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="mt-4">
     <div class="row">
       <div class="col-md-2">
@@ -62,15 +61,26 @@
       </div>
     </div>
   </div>
-  
-<div class="d-flex justify-content-center">
-    <button type="button" class="btn btn-success" onclick="redirectToComplete()">注文確定</button>
+  <div class="d-flex justify-content-center mt-4">
+  <%= form_with model: @order, url: orders_path, method: :post do |f| %>
+    <%= f.hidden_field :post_code, :value => @order.post_code %>
+    <%= f.hidden_field :payment_method, value: @order.payment_method %>
+    <%= f.hidden_field :name , :value => @order.name %>
+    <%= f.hidden_field :address, :value => @order.address %>
+    <%= f.hidden_field :customer_id, :value => @order.customer_id %>
+    <%= f.hidden_field :total_payment, value: @total_amount + 800 %>
+    <%= f.hidden_field :status, :value => @order.status %>
+    <%= f.submit "注文確定", class: "btn btn-success" %>
+  <% end %>
 </div>
-</div>
+<!--<div class="d-flex justify-content-center">-->
+<!--    <button type="button" class="btn btn-success" onclick="redirectToComplete()">注文確定</button>-->
+<!--</div>-->
 
 
-<script>
-    function redirectToComplete() {
-        window.location.href = '/orders/complete';
-    }
-</script>
+
+<!--<script>-->
+<!--    function redirectToComplete() {-->
+<!--        window.location.href = '/orders/complete';-->
+<!--    }-->
+<!--</script>-->

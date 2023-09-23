@@ -2,6 +2,7 @@ class Public::ItemsController < ApplicationController
   def index
     @genres = Genre.all
     @genre_id = params[:genre_id]
+
     # @orders = params[:genre_id].present? ? Genre.find(params[:genre_id]).orders : Order.all
     if @genre_id != nil
       @items = Genre.find(@genre_id).items
@@ -10,6 +11,7 @@ class Public::ItemsController < ApplicationController
       @items = Item.all
       @index = '商品'
     end
+
   end
 
   def show

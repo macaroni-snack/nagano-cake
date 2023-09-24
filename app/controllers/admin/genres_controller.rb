@@ -26,6 +26,7 @@ class Admin::GenresController < ApplicationController
   end
 
   def update
+
     @genre = Genre.find(params[:id])
     if @genre.update(genre_params)
        flash[:notice] = "変更しました。"
@@ -34,6 +35,7 @@ class Admin::GenresController < ApplicationController
       flash[:notice] = "変更に失敗しました。"
       render :edit
     end
+
   end
 
 

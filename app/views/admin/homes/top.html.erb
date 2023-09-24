@@ -1,5 +1,11 @@
 <div class="container mt-5">
-  <h1>注文履歴一覧</h1>
+  <h1>
+    <% if params[:search_name].present? %>
+      <%= @orders.first.name %> さんの注文履歴
+    <% else %>
+      注文履歴一覧
+    <% end %>
+  </h1>
 
   <table class="table">
     <thead>
@@ -13,8 +19,8 @@
     <tbody>
       <% @orders.each do |order| %>
         <tr>
-          <td><%= order.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
-          <td><%= link_to order.name, admin_order_path(order) %></td>
+          <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M:%S"), admin_order_path(order) %></td>
+          <td><%= link_to order.name, admin_path(search_name: order.name) %></td>
           <td><%= order.order_details.sum(:quantity) %></td>
           <td><%= order.status %></td>
         </tr>

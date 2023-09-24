@@ -11,7 +11,7 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       flash[:success] = "商品の新規登録が完了しました。"
-      redirect_to admin_items_path
+      redirect_to admin_item_path(@item.id)
     else
       flash[:alert] = "商品の新規登録内容に不備があります。"
       render :new
@@ -30,7 +30,7 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     if @item.update(item_params)
       flash[:success] = "商品詳細の変更が完了しました。"
-      redirect_to admin_items_path
+      redirect_to admin_item_path(@item.id)
     else
       flash[:alert] = "商品詳細の変更内容に不備があります。"
       render :edit

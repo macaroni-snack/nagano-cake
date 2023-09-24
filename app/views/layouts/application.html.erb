@@ -20,6 +20,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <% if customer_signed_in? %>
+        <p>ようこそ、<%= current_customer.family_name %> さん！</p>
         <li class="nav-item">
           <a class="nav-link" href="/customers/my_page">マイページ</a>
         </li>
@@ -32,7 +33,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/customers/sign_out" data-method="delete">ログアウト</a>
         </li>
-        
+
         <% elsif admin_signed_in? %>
           <!-- 管理者ログイン時のメニュー -->
           <li class="nav-item">

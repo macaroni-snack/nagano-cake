@@ -3,7 +3,7 @@
 <%= flash[:notice] %>
 <h4>ジャンル名</h4>
 <%= form_with model: @genre, url: admin_genres_path,method: :post do |f| %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name,placeholder: "ジャンル名" %>
   <%= f.submit '新規登録' %>
 <% end %>
 

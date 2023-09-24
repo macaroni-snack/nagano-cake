@@ -5,7 +5,7 @@
       <h2><%= @customer.family_name %> <%= @customer.first_name %>さんの会員情報編集</h2>
     </div>
   </div>
-  
+
   <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch, local: true do |f| %>
   <div class="row">
     <div class="col-sm-8 px-sm-0 offset-sm-1">

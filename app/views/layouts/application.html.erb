@@ -20,7 +20,9 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <% if customer_signed_in? %>
-        <p>ようこそ、<%= current_customer.family_name %> さん！</p>
+        <div style="width: 400px; margin: auto;">
+        <span>ようこそ、<%= current_customer.family_name %> さん！ <span>
+          </div>
         <li class="nav-item">
           <a class="nav-link" href="/customers/my_page">マイページ</a>
         </li>

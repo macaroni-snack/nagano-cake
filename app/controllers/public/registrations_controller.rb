@@ -37,6 +37,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
+  
 
   protected
 

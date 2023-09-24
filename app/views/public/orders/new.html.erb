@@ -19,7 +19,7 @@
 
       <!-- ご自身の住所のラジオボタン -->
       <div class="form-check">
-        <%= f.radio_button :address_option, :own_address, class: "form-check-input", checked: true %>
+        <%= f.radio_button :address_option, 0, class: "form-check-input", checked: true %>
         <%= f.label :order_address, "ご自身の住所", class: "form-check-label" %>
         <br>
         〒<%= current_customer.post_code %>
@@ -29,7 +29,7 @@
 
       <!-- 既存の住所から選択するラジオボタン -->
       <div class="form-check">
-        <%= f.radio_button :address_option, :existing_address, class: "form-check-input" %>
+        <%= f.radio_button :address_option, 1, class: "form-check-input" %>
         <%= f.label :existing_address, "登録済み住所から選択", class: "form-check-label" %>
         <br>
         <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
@@ -37,7 +37,7 @@
 
       <!-- 新しいお届け先を登録のラジオボタン -->
       <div class="form-check">
-        <%= f.radio_button :address_option, :new_address, class: "form-check-input" %>
+        <%= f.radio_button :address_option, 2, class: "form-check-input" %>
         <%= f.label :new_address, "新しいお届け先を登録", class: "form-check-label" %>
       </div>
 

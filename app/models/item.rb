@@ -8,7 +8,6 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :introduction, presence: true
   validates :image, presence: true
-  validates :genre, presence: true
   validates :price, presence: true, numericality: { only_integer: true, greater_than: 0}
 
   def with_tax_price

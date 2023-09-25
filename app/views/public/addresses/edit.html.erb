@@ -1,14 +1,10 @@
-<div>
-  <%= flash[:notice] %>
-</div>
-
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h2>配送先編集</h2>
     </div>
-  </div>  
-  
+  </div>
+
   <!--編集エラーメッセージ-->
   <% if @address.errors.any? %>
   <%= @address.errors.count %>件のエラーが発生しました
@@ -18,7 +14,7 @@
     <% end %>
   </ul>
   <% end %>
-  
+
   <div class="row">
     <div class="col-sm-10 px-sm-0 mx-auto">
     　<!--編集画面-->
@@ -30,14 +26,14 @@
             <td><%= f.text_field :post_code, autofocus: true, autocomplete: "post_code" %></td>
           </div>
         </tr>
-        
+
         <tr>
           <div class="address_form">
             <th><%= f.label :住所 %></th>
             <td><%= f.text_field :address, autofocus: true, autocomplete: "address" %></td>
           </div>
         </tr>
-    
+
         <tr>
           <div class="address_form">
             <th><%= f.label :宛名 %></th>

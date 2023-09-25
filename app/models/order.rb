@@ -7,4 +7,9 @@ class Order < ApplicationRecord
   def address_display
     '〒' + post_code + ' ' + address + ' ' + name
   end
+
+  def subtotal
+      item.with_tax_price * amount
+  end
+
 end

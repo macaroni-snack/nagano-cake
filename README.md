@@ -1,24 +1,50 @@
-# README
+#README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# アプリケーション名
 
-Things you may want to cover:
+NAGANO CAKE(ケーキ屋のECサイト)<br>
+URL：https://github.com/macaroni-snack/nagano-cake.git
 
-* Ruby version
+# アプリケーション概要
+ 
+ 
+ 長野県にあるケーキ屋（製菓屋）のECサイトになります。
+ 
+# テスト用アカウント
 
-* System dependencies
+**管理者用**<br>
+メールアドレス:123@456<br>
+パスワード:123456<br>
+管理者用ログインURL: /admin/sign_in
 
-* Configuration
+**顧客用**<br>
+メールアドレス：123@456<br>
+パスワード:123456<br>
 
-* Database creation
+# 使用方法
 
-* Database initialization
+```
+$ git clone git@github.com:macaroni-snack/nagano-cake.git
+$ bundle install
+$ rails db:seed
+$ rails s
 
-* How to run the test suite
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+カートに追加から注文までは顧客用ログインが必要になります。
 
-* Deployment instructions
+# 使用言語
+- HTML & SCSS
+- Ruby
+- フレームワーク
+  - Ruby on Rails
+  - 
+  
+# 動作環境
+Rails 6.1.7.6
 
-* ...
+# 開発者
+- 松永侑也
+- 深井萌絵
+- 原天衣
+- 宮下明星

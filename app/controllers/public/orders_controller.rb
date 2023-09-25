@@ -23,26 +23,34 @@ class Public::OrdersController < ApplicationController
 
     @payment_method = params[:order][:payment_method]
     @address_option = params[:order][:address_option]
-      if @address_option == "own_address"
+      if @address_option == "0"
         @order.post_code = current_customer.post_code
         @order.address = current_customer.address
         @order.name = current_customer.family_name + current_customer.first_name
-        @address="〒"+@order.post_code+@order.address+@order.name
+        @address = @order.address_display
+     
+      # もし住所が選択された場合、適切な方法で@addressを取得する処理を追加する
+      elsif @address_option == "1"
+        @address = Address.find(params[:order][:address_id])
+        @order.post_code = @address.post_code
+        @order.address = @address.address
+        @order.name = @address.name
+        @address = @order.address_display
+        
+  
+      elsif @address_option == "2"
+        @address = Address.new(address_params)
+        @address.customer_id = current_customer.id
+        @address.save
+        @order.post_code = @address.post_code
+        @order.address = @address.address
+        @order.name = @address.name
+        @address = @order.address_display
+
+        # 保存に成功した場合の処理
+      # @address=@order.post_code+@order.address+@order.name
+        flash[:success] = "新しいお届け先が登録されました。"
       end
-    # もし住所が選択された場合、適切な方法で@addressを取得する処理を追加する
-    if @address_option == "existing_address"
-     @address = Address.find(params[:order][:address_id]).address_display
-
-    elsif @address_option == "new_address"
-      @address = Address.new(address_params)
-      @address.customer_id = current_customer.id
-      @address.save
-      @address = Address.find(@address.id).address_display
-
-      # 保存に成功した場合の処理
-    # @address=@order.post_code+@order.address+@order.name
-      flash[:success] = "新しいお届け先が登録されました。"
-    end
   end
 
   def complete

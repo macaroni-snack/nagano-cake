@@ -2,6 +2,7 @@
   <div class="row">
     <!--左側にジャンル検索-->
     <div class="col-md-3">
+      <%= render 'public/genres/genre_search', genres: @genres, genre_id: @genre_id %>
       <%#= render 'genre_search', genres: @genres %>
     </div>
 

@@ -2,20 +2,19 @@
   <div class="row">
     <!--ジャンル検索左側-->
     <div class="col-md-3">
-      <h2>genre検索左側</h2>
       <%#= render partial: 'genre_search', locals: { genres: @genres } %>
       <%= render 'public/genres/genre_search', genres: @genres, genre_id: @genre_id %>
     </div>
 
     <!--商品一覧-->
     <div class="col-md-8 offset-md-1">
-      <h2>商品一覧(全<%= @items.count %>件)</h2>
+      <h2><%= @index %>一覧(全<%= @items.count %>件)</h2>
       <div class="row">
         <% @items.each do |item| %>
           <div class="col-12 col-md-6 col-lg-4">
             <!--商品画像をクリックしたら、商品詳細画面に遷移-->
             <%= link_to item_path(item) do %>
-              <%= image_tag item.image,size: "200x130" %>
+              <%= image_tag item.image, size: "200x130" %>
             <% end %>
             <!--商品名-->
             <p><%= item.name %></p>

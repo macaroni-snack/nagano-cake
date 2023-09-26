@@ -8,9 +8,10 @@ before_action :authenticate_admin!, if: :admin_namespace?
   def admin_namespace?
     controller_path.start_with?('admin/')
   end
-  
+
+  # ログイン後の遷移先
   def after_sign_in_path_for(resource)
-    customer_path(current_customer)
+    root_path
   end
 
   def after_sign_out_path_for(resource)

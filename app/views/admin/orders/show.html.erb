@@ -36,9 +36,9 @@
           <% @order.order_details.each do |detail| %>
             <tr>
               <td><%= detail.item.name %></td>
-              <td>¥<%= detail.price %></td>
+              <td>¥<%= detail.item.with_tax_price %></td>
               <td><%= detail.quantity %></td>
-              <td>¥<%= detail.price * detail.quantity %></td>
+              <td>¥<%= detail.item.with_tax_price * detail.quantity %></td>
               <td>
                 <%= form_with model: detail, url: admin_order_detail_path(detail), method: :patch, local: true do |f| %>
                   <div class="d-flex align-items-center">

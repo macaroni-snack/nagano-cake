@@ -1,10 +1,10 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-12 px-sm-0 offset-sm-1">
+  <div class="row mt-4">
+    <div class="col-sm-9 px-sm-0">
       <h2>ショッピングカート</h2>
     </div>
     <% unless @cart_items.empty? %>
-    <div class="col-sm-2 px-sm-0">
+    <div class="col-sm-3 text-right">
       <p><%= link_to 'カートを空にする', cart_items_destroy_all_path, method: :delete, data: { confirm: '削除しますか？' }, class: "btn btn-danger", id: "all-delete" %></p>
     </div>
     <% end %>
@@ -60,11 +60,14 @@
       <table class="table table-bordered">
         <tr>
           <th class="table-active" style="width:50%">合計金額</th>
+               <% subtotal_sum = @cart_items.sum { |cart_item| cart_item.subtotal.to_i } %>
+             <% @total_amount = subtotal_sum.to_s %>
           <td style="width:50%"><%= @total_amount.to_s %></td>
         </tr>
       </table>
     </div>
   </div>
+
   <div class="row">
     <div class="col-sm-2 px-sm-0 mx-auto text-center mb-3">
       <%= link_to "情報入力へ進む", new_order_path, data: {"turbolinks" => false}, class: "btn btn-success" %>

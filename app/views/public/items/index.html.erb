@@ -8,7 +8,7 @@
 
     <!--商品一覧-->
     <div class="col-md-8 offset-md-1">
-      <h2><%= @index %>一覧(全<%= @items.count %>件)</h2>
+      <h2 class = mb-5><%= @index %>一覧(全<%= @items.count %>件)</h2>
       <div class="row">
         <% @items.each do |item| %>
           <div class="col-12 col-md-6 col-lg-4">

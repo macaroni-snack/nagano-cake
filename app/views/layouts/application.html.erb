@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
     <script src="https://kit.fontawesome.com/b4a254db2e.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  
   <style>
     .custom-header {
     background-color: #FFF8E1; /* クリーム色の背景 */
@@ -20,71 +20,71 @@
     color: black !important;
     }
   </style>
-
+  
   <body>
-  <nav class="navbar navbar-expand-lg navbar-dark custom-header">
-    <a class="navbar-brand" href="/">
-      <img src="/assets/logo2_1695633537.png" alt="logo" width="100" height="50">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav nav-item nav-link ml-auto">
-        <% if customer_signed_in? %>
-        <p class="navbar-text mx-auto">ようこそ、<%= current_customer.family_name %> さん！</p>
-        <li class="nav-item">
-          <a class="nav-link" href="/customers/my_page">マイページ</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/items">商品一覧</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/cart_items">カート</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/customers/sign_out" data-method="delete">ログアウト</a>
-        </li>
-
-        <% elsif admin_signed_in? %>
-          <!-- 管理者ログイン時のメニュー -->
-          <li class="nav-item">
-            <a class="nav-link" href="/admin/items">商品一覧</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/admin/customers">会員一覧</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/admin">注文履歴一覧</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/admin/genres">ジャンル一覧</a>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
-          </li>
-        <% else %>
-
-          <li class="nav-item">
-            <a class="nav-link" href="/about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/items">商品一覧</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/customers/sign_up">新規登録</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/customers/sign_in">ログイン</a>
-          </li>
-        <% if admin_signed_in? %>
-          <%= link_to '管理者ログアウト', destroy_admin_session_path, method: :delete, class: 'btn btn-danger' %>
-        <% end %>
-        <% end %>
-      </ul>
-    </div>
-  </nav>
-    <%= flash[:notice] %>
-    <%= yield %>
+    <nav class="navbar navbar-expand-lg navbar-dark custom-header">
+      <a class="navbar-brand" href="/">
+        <img src="/assets/logo2_1695633537.png" alt="logo" width="100" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav nav-item nav-link ml-auto">
+            <% if customer_signed_in? %>
+            <p class="navbar-text mx-auto">ようこそ、<%= current_customer.family_name %> さん！</p>
+            <li class="nav-item">
+              <a class="nav-link" href="/customers/my_page">マイページ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/items">商品一覧</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/cart_items">カート</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/customers/sign_out" data-method="delete">ログアウト</a>
+            </li>
+  
+            <% elsif admin_signed_in? %>
+            <!-- 管理者ログイン時のメニュー -->
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/items">商品一覧</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/customers">会員一覧</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin">注文履歴一覧</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/genres">ジャンル一覧</a>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link' %>
+            </li>
+            <% else %>
+  
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/items">商品一覧</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/customers/sign_up">新規登録</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/customers/sign_in">ログイン</a>
+            </li>
+            <% if admin_signed_in? %>
+            <%= link_to '管理者ログアウト', destroy_admin_session_path, method: :delete, class: 'btn btn-danger' %>
+            <% end %>
+            <% end %>
+            </ul>
+          </div>
+        </nav>
+        <%= flash[:notice] %>
+        <%= yield %>
   </body>
 </html>

@@ -8,19 +8,23 @@
     </div>
 
     <!--商品一覧-->
-    <div class="col-md-8 offset-md-1">
-      <h2 class = mb-5><%= @index %>一覧(全<%= @items.count %>件)</h2>
+   <div class="col-md-8 offset-md-1">
+      <h2 class="mb-5"><%= @index %>一覧(全<%= @items.count %>件)</h2>
       <div class="row">
         <% @items.each do |item| %>
-          <div class="col-12 col-md-6 col-lg-4">
-            <!--商品画像をクリックしたら、商品詳細画面に遷移-->
+          <div class="col-12 col-md-6 col-lg-4 mb-2">
             <%= link_to item_path(item) do %>
-              <%= image_tag item.image, size: "200x130" %>
+              <div class="card">
+                <div class="card-body product-image text-center" style="height: 200px; overflow: hidden;">
+                  <%= image_tag item.image, class: "img-fluid w-100 h-100" %> <!-- img-fluidクラスとw-100クラス、h-100クラスを追加 -->
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title" style="color: black;">商品名</h4>
+                  <p class="card-text" style="color: black;"><%= item.name %></p>
+                  <h6 class="card-text" style="color: black;">¥<%= (item.price * 1.1).floor %>（税込）</h6>
+                </div>
+              </div>
             <% end %>
-            <!--商品名-->
-            <p><%= item.name %></p>
-            <!--(販売中だったら、)商品価格表示-->
-            <p>¥<%= (item.price * 1.1).floor %>（税込）</p>
           </div>
         <% end %>
       </div>

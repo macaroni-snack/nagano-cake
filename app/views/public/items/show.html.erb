@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <div class="row">
+    <!-- 左側にジャンル検索 -->
+    <div class="col-md-3">
+      <%= render 'public/genres/genre_search', genres: @genres, genre_id: @genre_id %>
+    </div>
+
+    <!-- 商品詳細画面 -->
+    <div class="col-md-8 offset-md-1">
+      <div class="row">
+        <!-- 左側に商品画像 -->
+        <div class="col-md-7">
+          <p><%= image_tag @item.image, size: "300x200", class: "img-fluid" %></p>
+        </div>
+
+            <!-- 右側に商品説明 -->
+        <div class="col-md-5">
+          <!-- 商品名 -->
+          <h2><%= @item.name %></h2>
+          <!-- 商品説明 -->
+          <h4><%= @item.introduction %></h4>
+          <!-- 商品価格 -->
+          <h4>¥<%= (@item.price * 1.1).floor %>（税込）</h4>
+
+          <!-- 販売中だったら、個数選択・カートボタン表示 -->
+          <% if @item.is_active == true %>
+            <%= form_with model: @cart_item, url: cart_items_path, method: :post, local: true do |f| %>
+              <div class="form-group">
+                <%= f.label :amount, "個数選択" %>
+                <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10], class: "form-control" %>
+              </div>
+              <%= f.hidden_field :item_id, :value => @item.id %>
+              <%= f.submit "カートに入れる", class: "btn btn-success btn-block" %>
+            <% end %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

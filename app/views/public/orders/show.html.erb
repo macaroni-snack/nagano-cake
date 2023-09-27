@@ -1,0 +1,78 @@
+<div class="container mt-5">
+  <h1>注文詳細</h1>
+
+  <div class="row">
+    <!-- テーブル①: 注文情報 -->
+    <div class="col-md-6">
+      <h2>注文情報</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">注文日</th>
+            <td><%= @order.created_at.strftime("%Y-%m-%d") %></td>
+          </tr>
+          <tr>
+            <th scope="row">配送先</th>
+            <td>
+              〒<%= @order.post_code %><br>
+              <%= @order.address %><br>
+              <%= @order.name %>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">支払方法</th>
+            <td><%= @order.payment_method %></td>
+          </tr>
+          <tr>
+            <th scope="row">ステータス</th>
+            <td><%= @order.status %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- テーブル②: 請求情報 -->
+    <div class="col-md-6">
+      <h2>請求情報</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">商品合計</th>
+            <td><%= (@order.total_payment - 800) %>円</td>
+          </tr>
+          <tr>
+            <th scope="row">配送料</th>
+            <td><%= @order.shipping_fee %>円</td>
+          </tr>
+          <tr>
+            <th scope="row">ご請求額</th>
+            <td><%= @order.total_payment %>円</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- テーブル③: 商品一覧 -->
+  <h2>注文内容</h2>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>商品</th>
+        <th>単価（税込）</th>
+        <th>個数</th>
+        <th>小計</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order.order_details.each do |detail| %>
+        <tr>
+          <td><%= detail.item.name %></td>
+          <td><%= detail.item.with_tax_price %>円</td>
+          <td><%= detail.quantity %></td>
+          <td><%= detail.subtotal %>円</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,144 @@
+<h2>新規会員登録</h2>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <%= form_with(model: @customer, url: customer_registration_path, local: true) do |form| %>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-3 mt-2">
+            　名前
+            </div>
+            <div class="col-md-1">
+              <%= form.label :family_name,"(姓)",class: "col-form-label" %>
+            </div>
+            <div>
+              <%= form.text_field :family_name, class: "form-control",placeholder: "山田" %>
+            </div>
+
+            <div class="col-md-1">
+              <%= form.label :first_name,"(名)", class: "col-form-label" %>
+            </div>
+            <div>
+              <%= form.text_field :first_name , class: "form-control", placeholder: "太郎" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-3 mt-2">
+            　フリガナ
+            </div>
+            <div class="col-md-1">
+              <%= form.label :family_name_kana,"(セイ)", class: "col-form-label" %>
+            </div>
+            <div>
+              <%= form.text_field :family_name_kana, class: "form-control", placeholder: "ヤマダ" %>
+            </div>
+
+            <div class="col-md-1">
+              <%= form.label :first_name_kana,"(メイ)", class: "col-form-label" %>
+            </div>
+            <div>
+              <%= form.text_field :first_name_kana, class: "form-control", placeholder: "タロウ" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-3 mt-2">
+            　メールアドレス
+            </div>
+            <div class="col-md-1">
+            </div>
+            <div>
+              <%= form.email_field :email, class: "form-control", placeholder: "sample@example.com" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-3 mt-2">
+            　郵便番号(ハイフンなし)
+            </div>
+            <div class="col-md-1">
+            </div>
+            <div>
+              <%= form.text_field :post_code, class: "form-control", placeholder: "0000000" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-3 mt-2">
+            　住所
+            </div>
+            <div class="col-md-1">
+            </div>
+            <div>
+              <%= form.text_field :address, class: "form-control", placeholder: "東京都渋谷区代々木神園町0-0" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-3 mt-2">
+            　電話番号(ハイフンなし)
+            </div>
+            <div class="col-md-1">
+            </div>
+            <div>
+              <%= form.text_field :telephone_number, class: "form-control", placeholder: "00000000000" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-3 mt-2">
+            　パスワード(6文字以上)
+            </div>
+            <div class="col-md-1">
+            </div>
+            <div>
+              <%= form.password_field :password, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-3 mt-2">
+            　パスワード(確認用)
+            </div>
+            <div class="col-md-1">
+            </div>
+            <div>
+              <%= form.password_field :password_confirmation, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-3 mt-2">
+            </div>
+            <div class="col-md-1">
+            </div>
+            <div class="form-group text-center">
+              <%= form.submit '新規登録', class: "btn btn-primary btn-block" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<%= render "public/shared/links" %>

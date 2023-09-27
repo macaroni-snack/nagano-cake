@@ -1,0 +1,68 @@
+<style>
+  .btn-primary {
+    background-color: #D2691E; /* 好きな色のコードに置き換えてください */
+    border-color: #D2691E; /* ボーダーの色も合わせて設定 */
+  }
+
+  .table {
+  background-color: #fff; /* 白の色コードに置き換えてください */
+}
+</style>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 order-info-box">
+      <h4>注文情報</h4>
+      <ul class="list-group b">
+        <li class="list-group-item">購入者: <%= @order.name %></li>
+        <li class="list-group-item">注文日: <%= @order.created_at.strftime("%Y-%m-%d") %></li>
+        <li class="list-group-item">配送先: <%= @order.address %></li>
+        <li class="list-group-item">支払方法: <%= @order.payment_method %></li>
+        <li class="list-group-item">
+          <div>注文ステータス:
+          <%= form_with model: @order, url: admin_order_path(@order), method: :patch, local: true do |f| %>
+  <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]}, {}, class: 'form-control' %>
+  <%= f.submit "変更", class: 'btn btn-custom btn-sm mt-2 m-2' %>
+<% end %>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <h4>注文詳細</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価（税込み）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>製作ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order.order_details.each do |detail| %>
+            <tr>
+              <td><%= detail.item.name %></td>
+              <td>¥<%= detail.item.with_tax_price %></td>
+              <td><%= detail.quantity %></td>
+              <td>¥<%= detail.item.with_tax_price * detail.quantity %></td>
+              <td>
+                <%= form_with model: detail, url: admin_order_detail_path(detail), method: :patch, local: true do |f| %>
+                  <div class="d-flex align-items-center">
+                    <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]}, {}, class: 'form-control mr-2' %>
+                    <%= f.submit "変更", class: 'btn btn-custom' %>
+                  </div>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

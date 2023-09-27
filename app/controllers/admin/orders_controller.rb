@@ -17,6 +17,8 @@ class Admin::OrdersController < ApplicationController
   @order = Order.find(params[:id])
   @customer = @order.customer
   @orders = @customer.orders
+  
+  
   end
   
   def create

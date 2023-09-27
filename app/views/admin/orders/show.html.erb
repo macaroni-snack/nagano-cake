@@ -1,8 +1,19 @@
+<style>
+  .btn-primary {
+    background-color: #D2691E; /* 好きな色のコードに置き換えてください */
+    border-color: #D2691E; /* ボーダーの色も合わせて設定 */
+  }
+
+  .table {
+  background-color: #fff; /* 白の色コードに置き換えてください */
+}
+</style>
+
 <div class="container mt-5">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 order-info-box">
       <h4>注文情報</h4>
-      <ul class="list-group">
+      <ul class="list-group b">
         <li class="list-group-item">購入者: <%= @order.name %></li>
         <li class="list-group-item">注文日: <%= @order.created_at.strftime("%Y-%m-%d") %></li>
         <li class="list-group-item">配送先: <%= @order.address %></li>
@@ -11,7 +22,7 @@
           <div>注文ステータス:
           <%= form_with model: @order, url: admin_order_path(@order), method: :patch, local: true do |f| %>
   <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]}, {}, class: 'form-control' %>
-  <%= f.submit "変更", class: 'btn btn-primary btn-sm mt-2' %>
+  <%= f.submit "変更", class: 'btn btn-custom btn-sm mt-2 m-2' %>
 <% end %>
           </div>
         </li>
@@ -43,7 +54,7 @@
                 <%= form_with model: detail, url: admin_order_detail_path(detail), method: :patch, local: true do |f| %>
                   <div class="d-flex align-items-center">
                     <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]}, {}, class: 'form-control mr-2' %>
-                    <%= f.submit "変更", class: 'btn btn-primary' %>
+                    <%= f.submit "変更", class: 'btn btn-custom' %>
                   </div>
                 <% end %>
               </td>

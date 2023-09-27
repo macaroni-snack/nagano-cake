@@ -10,6 +10,7 @@ class Public::CartItemsController < ApplicationController
 
   def create
     @cart_item_check = CartItem.find_by(customer_id: current_customer.id, item_id: params[:cart_item][:item_id])
+    
     if @cart_item_check
       @cart_item_check.amount += params[:cart_item][:amount].to_i
       @cart_item_check.save
@@ -26,6 +27,7 @@ class Public::CartItemsController < ApplicationController
         redirect_back(fallback_location: root_path)
       end
     end
+    
   end
 
   def update
